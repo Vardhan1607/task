@@ -1,0 +1,49 @@
+{
+    "swagger":"2.0",
+    "info":{
+        "title":"Ngrok",
+        "description":"API for 0c9b-34-133-40-188.ngrok.io",
+        "version":"0.0.1"},
+        "host":"0c9b-34-133-40-188.ngrok.io",
+        "schemes":["http"],
+        "paths":{
+            "/predict":{
+                "post":{
+                    "tags":["Predict"],
+                    "description":"sentiment analysis",
+                    "operationId":"get_prediction",
+                    "consumes":["application/json"],
+                    "produces":["application/json"],
+                    "parameters":[{"name":"SentimentAnalysis",
+                        "in":"body",
+                        "description":"Post",
+                        "required":true,
+                        "schema":{"$ref":"#/definitions/SentimentAnalysis"}}],
+                    "responses":{
+                        "200":{
+                            "description":"sentiment analysis",
+                            "schema":{
+                                "type":"array",
+                                "items":{
+                                    "$ref":"#/definitions/Post"}},
+                                    "examples":{
+                                        "application/json":{"prediction":"Negative"}}}},
+                    "security":[]}}},
+                "definitions":{
+                    "SentimentAnalysis":{
+                        "description":"Model for SentimentAnalysis",
+                        "required":["sentence"],
+                        "properties":{
+                            "sentence":{
+                                "type":"string",
+                                "x-example":"@VirginAmerica and its a really big bad thing about it"}}},
+                    "Post":{
+                        "description":"Model for Post",
+                        "required":["prediction"],
+                        "properties":{
+                            "prediction":{
+                                "type":"string",
+                                "x-example":"Negative"}}}},
+                    "securityDefinitions":{},
+                    "security":[],
+                    "tags":[{"name":"Predict","description":"Operations about Predict"}]}
